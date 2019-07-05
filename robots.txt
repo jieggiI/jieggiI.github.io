@@ -1,0 +1,8 @@
+User-agent: *
+Sitemap: http://jieggii.github.io/sitemap.xml
+Disallow: /css/
+Disallow: /assets/
+Disallow: /favicon/
+Disallow: /js/
+Disallow: *.jpg
+Disallow: *.png
