@@ -122,7 +122,7 @@ function get_latest_star() {
 
 function get_all_repos() {
     return get_request('https://api.github.com/users/jieggii/repos?per_page=200').sort(function (a, b) {
-        return a.stargazers_count > b.stargazers_count ? -1 : 1
+        return a.id > b.id ? -1 : 1
     });
 }
 
