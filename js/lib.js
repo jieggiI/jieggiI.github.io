@@ -29,40 +29,40 @@ function convert_time(time) {
 
     let addition = '';
 
-    if (chosen[0] > 1) {
-        addition = 's';
-    }
+    if (chosen[0] > 1) {addition = 's';}
 
     return chosen[0].toString() + ' ' + chosen[1] + addition + ' ' + 'ago';
 }
 
-function shuffle(a) {
-    for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-}
 
-function get_request(url) {
+function get(url) {
     let response;
 
     $.ajax({
         url: url,
-        data: {},
+        data: {},   // Can be set = {'access_token': '<your_github_access_token>'} while developing
         async: false,
         type: 'GET',
         success: function (data) {
             response = data;
         }
     });
-
     return response;
 }
 
 
-function get_latest_commit() {
-    let response = get_request('https://api.github.com/users/jieggii/events/public');
+function get_latest_repo(username) {
+    let response = get('https://api.github.com/users/' + username + '/repos?sort=created&per_page=1')[0];
+
+    return {
+        date: convert_time(response['created_at']),
+        url: response['html_url'],
+        name: response['full_name']
+    }
+}
+
+function get_latest_commit(username) {
+    let response = get('https://api.github.com/users/' + username + '/events/public');
 
     for (let i = 0; i < response.length; i++) {
         if (response[i]['type'] === 'PushEvent') {
@@ -86,107 +86,12 @@ function get_latest_commit() {
     }
 }
 
-
-function get_latest_follower(followers_count) {
-    let response = get_request('https://api.github.com/users/jieggii/followers?per_page=1&page=' + followers_count.toString())[0];
+function get_latest_follower(followers_count, username) {
+    let response = get('https://api.github.com/users/' + username + '/followers?per_page=1&page=' + followers_count.toString())[0];
 
     return {
         username: response['login'],
         avatar: response['avatar_url'],
         url: response['html_url'],
-        id: followers_count
-    }
-}
-
-function get_latest_repo() {
-    let response = get_request('https://api.github.com/users/jieggii/repos?sort=created&per_page=1')[0];
-    return {
-        date: convert_time(response['created_at']),
-        url: response['html_url'],
-        name: response['full_name'],
-        lang: response['language'],
-        desc: response['description']
-    }
-}
-
-function get_latest_star() {
-    let response = get_request('https://api.github.com/users/jieggii/starred?sort=created')[0];
-
-    return {
-        name: response['full_name'],
-        url: response['html_url'],
-        lang: response['language'],
-        desc: response['description']
-    }
-}
-
-function get_all_repos() {
-    return get_request('https://api.github.com/users/jieggii/repos?per_page=200').sort(function (a, b) {
-        return a.id > b.id ? -1 : 1
-    });
-}
-
-function get_latest_pull() {
-    let response =  get_request('https://api.github.com/search/issues?q=author:jieggii+type:pr&sort=updated')['items'];
-
-    if (response.length !== 0) {
-        let pull = response[0];
-        let state = pull.state;
-
-        if (state === 'open') {
-            state = 'Opened'
-        }
-
-        else {
-            state = 'Closed'
-        }
-
-        return {
-            date: convert_time(pull.created_at),
-            title: pull.title,
-            url: pull.html_url,
-            state: state
-        }
-    }
-
-    else {
-        return {
-            date: 0,
-            title: 'None',
-            url: '#'
-        }
-    }
-}
-
-
-function get_latest_issue() {
-    let response = get_request('https://api.github.com/search/issues?q=author:jieggii+type:issue&sort=updated')['items'];
-
-    if (response.length !== 0) {
-        let issue = response[0];
-        let state = issue.state;
-
-        if (state === 'open') {
-            state = 'Opened'
-        }
-
-        else {
-            state = 'Closed'
-        }
-
-        return {
-            date: convert_time(issue.created_at),
-            title: issue.title,
-            url: issue.html_url,
-            state: state
-        }
-    }
-
-    else {
-        return {
-            date: 0,
-            title: 'None',
-            url: '#'
-        }
     }
 }
