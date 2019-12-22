@@ -1,11 +1,9 @@
 {
   "github-username": "jieggii",
-  "description": "test",
-  "status": "12345",
+  "description": "🌈",
+  "status": "Always learning",
   "social-media": [
-          {"fa_icon": "fab fa-github", "url": "https://github.com/username", "color": "black"},
-          {"fa_icon": "fab fa-twitter", "url": "https://twitter.com/username", "color": "#17a2f2"},
-          {"fa_icon": "far fa-envelope", "url": "mailto:email@example.com", "color": ""},
-          {"fa_icon": "fab fa-instagram", "url": "https://instagram.com/username", "color": ""}
+          {"fa_icon": "fab fa-github", "url": "https://github.com/jieggii", "color": "black"},
+          {"fa_icon": "far fa-envelope", "url": "mailto:jieggii@protonmail.com", "color": "black"},
   ]
 }
