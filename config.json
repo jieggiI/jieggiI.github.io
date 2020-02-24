@@ -4,6 +4,7 @@
   "status": "",
   "social-media": [
   	{"fa_icon": "fab fa-github", "url": "https://github.com/jieggii", "color": "black"},
-  	{"fa_icon": "far fa-envelope", "url": "mailto:jieggii@protonmail.com", "color": "black"}
+  	{"fa_icon": "far fa-envelope", "url": "mailto:jieggii@protonmail.com", "color": "black"},
+    {"fa_icon": "fab fa-telegram", "url": "t.me/jieggii", "color": "black"}
   ]
 }
