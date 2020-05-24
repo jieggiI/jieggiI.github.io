@@ -1,0 +1,40 @@
+.line-number {
+	color: #E5AE2F;
+}
+
+.fn {
+	color: #E5AE2F;
+}
+
+.let {
+	color: #E5AE2F;
+}
+
+.eq {
+	color: #E5AE2F;
+}
+
+.quotes {
+	color: #A36A7A;
+}
+
+.link {
+	text-decoration: none;
+}
+
+.link:hover {
+	color: #d65d0e;
+	text-decoration: underline;
+}
+
+.macro {
+	color: #41788B;
+}
+
+.fn-name {
+	color: #90BE7D;
+}
+
+.str {
+	color: #8AFBAF;
+}

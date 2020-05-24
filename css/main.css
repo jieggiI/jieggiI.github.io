@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap');
+
+body {
+	background-color: #32302F;
+	color: #EBDBB2;
+}
+
+.vim {
+	font-size: 25px;
+	color: #E6D5AE;
+	font-family: 'Source Code Pro', monospace;
+}
+
+.info-line {
+	background-color: #E7D4AE;
+	width: 100%;
+	color: black;
+}
+
+.tab {
+	color: #32302F;
+}
